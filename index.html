@@ -99,4 +99,55 @@
 </main>
 
 <!-- Navegação -->
-<nav id="nav" class="
+<nav id="nav" class="hidden bottom-nav flex justify-around items-center py-3 fixed bottom-0 w-full border-t">
+  <button onclick="mostrarTela('pesquisa')" class="flex flex-col items-center">
+    <span class="text-2xl">🔍</span>
+    <span class="text-xs mt-1 text-green-600 font-semibold">Explorar</span>
+  </button>
+  <button onclick="mostrarTela('denuncia')" class="flex flex-col items-center">
+    <span class="text-2xl">🚨</span>
+    <span class="text-xs mt-1 text-green-600 font-semibold">Denunciar</span>
+  </button>
+  <button onclick="mostrarTela('perfil')" class="flex flex-col items-center">
+    <span class="text-2xl">👤</span>
+    <span class="text-xs mt-1 text-green-600 font-semibold">Perfil</span>
+  </button>
+</nav>
+
+<!-- Scripts -->
+<script>
+let pontos = 0;
+
+function login() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  
+  // Verificar se os campos estão preenchidos
+  if (username && password) {
+    document.getElementById('login').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+    document.getElementById('nav').classList.remove('hidden');
+  } else {
+    alert('Por favor, preencha todos os campos.');
+  }
+}
+
+function mostrarTela(tela) {
+  document.querySelectorAll('.screen').forEach(t => t.classList.add('hidden'));
+  document.getElementById(tela).classList.remove('hidden');
+}
+
+function enviarDenuncia(event) {
+  event.preventDefault();
+  pontos += 10;
+  document.getElementById('pontos').textContent = pontos + ' pts';
+  document.getElementById('perfilPontos').textContent = pontos + ' pts';
+  alert('Denúncia enviada com sucesso! Você ganhou 10 pontos.');
+  mostrarTela('pesquisa'); // Agora não volta para a tela do mapa.
+  document.getElementById('descricao').value = '';
+  document.getElementById('foto').value = '';
+}
+</script>
+
+</body>
+</html>
