@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sena Verde</title>
+  
+  <!-- Fonte Nunito -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="styles.css" rel="stylesheet">
+</head>
+
+<body class="flex flex-col">
+
+<!-- Tela de Login -->
+<section id="login" class="flex flex-col items-center justify-center h-screen p-6">
+  <div class="bg-white p-8 rounded-3xl shadow-lg w-full max-w-xs text-center">
+    <h1 class="text-3xl font-bold text-green-600 mb-6">Sena Verde</h1>
+    <input type="text" id="username" placeholder="Usuário" class="mb-4 w-full p-3 border rounded-lg shadow-sm focus:outline-green-500">
+    <input type="password" id="password" placeholder="Senha" class="mb-6 w-full p-3 border rounded-lg shadow-sm focus:outline-green-500">
+    <button onclick="login()" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition">Entrar</button>
+  </div>
+</section>
+
+<!-- App Principal -->
+<main id="app" class="hidden flex-1 flex-col">
+  <!-- Header -->
+  <header class="flex items-center justify-between bg-green-500 text-white p-4">
+    <h2 class="text-2xl font-bold">Sena Verde</h2>
+    <div class="flex items-center gap-2">
+      <span id="pontos" class="text-lg">0 pts</span>
+      <img id="perfilImg" src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Perfil" class="w-9 h-9 bg-white p-1 rounded-full">
+    </div>
+  </header>
+
+  <!-- Conteúdos -->
+  <section id="pesquisa" class="screen p-6">
+    <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+      <div class="w-full h-80 overflow-x-auto">
+        <img src="imagemRioSena.jpg" alt="Mapa do Rio Sena" class="w-full h-full object-cover zoomable">
+      </div>
+      <div class="p-4">
+        <p class="text-gray-700 text-center text-lg font-semibold">Sensores de poluição e pontos de coleta próximos ao Rio Sena.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="denuncia" class="screen hidden p-6">
+    <div class="bg-white p-6 rounded-3xl shadow-lg">
+      <h2 class="text-2xl font-bold mb-6 text-center text-green-600">Nova Denúncia</h2>
+      <form onsubmit="enviarDenuncia(event)" class="space-y-4">
+        <textarea id="descricao" placeholder="Descreva o problema..." required class="w-full p-3 border rounded-lg shadow-sm"></textarea>
+        <input type="file" id="foto" class="w-full p-2 border rounded-lg shadow-sm">
+        <button type="submit" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition">Enviar Denúncia</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="perfil" class="screen hidden p-6">
+    <div class="bg-white p-6 rounded-3xl shadow-lg text-center">
+      <img id="perfilFoto" src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Perfil" class="w-24 h-24 mx-auto rounded-full bg-green-100 p-2 mb-6">
+      <h2 class="text-2xl font-bold text-green-600 mb-2">Meu Perfil</h2>
+      <p class="text-gray-600">Pontos Acumulados:</p>
+      <p id="perfilPontos" class="text-3xl font-bold text-green-700 mt-2">0 pts</p>
+      
+      <!-- Botão para alterar a foto -->
+      <input type="file" id="uploadFoto" class="mt-4 p-2 border rounded-lg" onchange="alterarFoto()">
+      <p class="mt-2 text-sm text-gray-600">Clique para alterar a foto de perfil.</p>
+    </div>
+  </section>
+</main>
+
+<!-- Navegação -->
+<nav id="nav" class="hidden bottom-nav flex justify-around items-center py-3 fixed bottom-0 w-full border-t">
+  <button onclick="mostrarTela('pesquisa')" class="flex flex-col items-center">
+    <span class="text-2xl">🔍</span>
+    <span class="text-xs mt-1 text-green-600 font-semibold">Explorar</span>
+  </button>
+  <button onclick="mostrarTela('denuncia')" class="flex flex-col items-center">
+    <span class="text-2xl">🚨</span>
+    <span class="text-xs mt-1 text-green-600 font-semibold">Denunciar</span>
+  </button>
+  <button onclick="mostrarTela('perfil')" class="flex flex-col items-center">
+    <span class="text-2xl">👤</span>
+    <span class="text-xs mt-1 text-green-600 font-semibold">Perfil</span>
+  </button>
+</nav>
+
+<!-- Scripts -->
+<script src="script.js"></script>
+</body>
+</html>
