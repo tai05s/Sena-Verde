@@ -10,34 +10,7 @@
   
   <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: linear-gradient(to bottom, #c7f5d5, #e0f7ec);
-      min-height: 100vh;
-    }
-
-    .bottom-nav {
-      backdrop-filter: blur(10px);
-      background-color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* Rolagem Horizontal e Zoom */
-    .image-container {
-      width: 100%;
-      overflow-x: auto; /* Permite rolar horizontalmente */
-    }
-
-    .image-container img {
-      min-width: 100%; /* Faz com que a imagem ocupe a largura total da tela */
-      height: auto; /* Mantém a proporção da imagem */
-      transition: transform 0.5s ease; /* Transição suave para o efeito de zoom */
-    }
-
-    .image-container img:hover {
-      transform: scale(1.2); /* Aumenta a imagem quando o mouse passa sobre ela */
-    }
-  </style>
+  <link href="styles.css" rel="stylesheet">
 </head>
 
 <body class="flex flex-col">
@@ -53,28 +26,36 @@
 </section>
 
 <!-- App Principal -->
-<main id="app" class="hidden flex-1 flex flex-col">
-
+<main id="app" class="hidden flex-1 flex-col">
   <!-- Header -->
   <header class="flex items-center justify-between bg-green-500 text-white p-4">
     <h2 class="text-2xl font-bold">Sena Verde</h2>
     <div class="flex items-center gap-2">
       <span id="pontos" class="text-lg">0 pts</span>
-      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Perfil" class="w-9 h-9 bg-white p-1 rounded-full">
+      <img id="perfilImg" src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Perfil" class="w-9 h-9 bg-white p-1 rounded-full">
     </div>
   </header>
 
   <!-- Conteúdos -->
   <section id="pesquisa" class="screen p-6">
     <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
-      <div class="image-container">
-        <img src="imagemRioSena.jpg" alt="Mapa do Rio Sena">
+      <div class="w-full h-96">
+        <iframe
+          class="w-full h-full"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9994424507174!2d2.2933083156755786!3d48.85837007928706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fdf0b6bbcb1%3A0x9f4a84adf8d650a!2sRio%20Sena!5e0!3m2!1spt-BR!2sfr!4v1682807662415!5m2!1spt-BR!2sfr"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
       <div class="p-4">
-        <p class="text-gray-700 text-center text-lg font-semibold">Sensores de poluição e pontos de coleta próximos ao Rio Sena.</p>
+        <p class="text-gray-700 text-center text-lg font-semibold">
+          Sensores de poluição e pontos de coleta próximos ao Rio Sena.
+        </p>
       </div>
     </div>
   </section>
+  
 
   <section id="denuncia" class="screen hidden p-6">
     <div class="bg-white p-6 rounded-3xl shadow-lg">
@@ -89,13 +70,16 @@
 
   <section id="perfil" class="screen hidden p-6">
     <div class="bg-white p-6 rounded-3xl shadow-lg text-center">
-      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Perfil" class="w-24 h-24 mx-auto rounded-full bg-green-100 p-2 mb-6">
+      <img id="perfilFoto" src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Perfil" class="w-24 h-24 mx-auto rounded-full bg-green-100 p-2 mb-6">
       <h2 class="text-2xl font-bold text-green-600 mb-2">Meu Perfil</h2>
       <p class="text-gray-600">Pontos Acumulados:</p>
       <p id="perfilPontos" class="text-3xl font-bold text-green-700 mt-2">0 pts</p>
+      
+      <!-- Botão para alterar a foto -->
+      <input type="file" id="uploadFoto" class="mt-4 p-2 border rounded-lg" onchange="alterarFoto()">
+      <p class="mt-2 text-sm text-gray-600">Clique para alterar a foto de perfil.</p>
     </div>
   </section>
-
 </main>
 
 <!-- Navegação -->
@@ -115,39 +99,6 @@
 </nav>
 
 <!-- Scripts -->
-<script>
-let pontos = 0;
-
-function login() {
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  
-  // Verificar se os campos estão preenchidos
-  if (username && password) {
-    document.getElementById('login').classList.add('hidden');
-    document.getElementById('app').classList.remove('hidden');
-    document.getElementById('nav').classList.remove('hidden');
-  } else {
-    alert('Por favor, preencha todos os campos.');
-  }
-}
-
-function mostrarTela(tela) {
-  document.querySelectorAll('.screen').forEach(t => t.classList.add('hidden'));
-  document.getElementById(tela).classList.remove('hidden');
-}
-
-function enviarDenuncia(event) {
-  event.preventDefault();
-  pontos += 10;
-  document.getElementById('pontos').textContent = pontos + ' pts';
-  document.getElementById('perfilPontos').textContent = pontos + ' pts';
-  alert('Denúncia enviada com sucesso! Você ganhou 10 pontos.');
-  mostrarTela('pesquisa'); // Agora não volta para a tela do mapa.
-  document.getElementById('descricao').value = '';
-  document.getElementById('foto').value = '';
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
