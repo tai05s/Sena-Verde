@@ -136,5 +136,14 @@
 <!-- Scripts -->
 <script src="script.js"></script>
 
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => console.log("Service Worker registrado"))
+      .catch(error => console.log("Erro ao registrar:", error));
+  }
+</script>
+
+
 </body>
 </html>
