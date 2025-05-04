@@ -1,10 +1,16 @@
 {
     "name": "Sena Verde",
-    "short_name": "Sena",
-    "start_url": ".",
+    "short_name": "SenaVerde",
+    "description": "App para denúncias ambientais, pontos de coleta e recompensas no Rio Sena.",
+    "start_url": "/index.html",
+    "scope": "/",
+    "id": "/",
     "display": "standalone",
-    "background_color": "#c7f5d5",
-    "theme_color": "#34d399",
+    "orientation": "portrait",
+    "background_color": "#ffffff",
+    "theme_color": "#4CAF50",
+    "lang": "pt-BR",
+    "dir": "ltr",
     "icons": [
       {
         "src": "icon-192.png",
@@ -15,6 +21,13 @@
         "src": "icon-512.png",
         "sizes": "512x512",
         "type": "image/png"
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "screenshot1.png",
+        "type": "image/png",
+        "sizes": "540x960"
       }
     ]
   }
