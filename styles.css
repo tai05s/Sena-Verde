@@ -1,14 +1,17 @@
+/* === Estilos gerais === */
 body {
   font-family: 'Nunito', sans-serif;
   background: linear-gradient(to bottom, #c7f5d5, #e0f7ec);
   min-height: 100vh;
 }
 
+/* === Navegação inferior com efeito de blur === */
 .bottom-nav {
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.7);
 }
 
+/* === Zoom em elementos clicáveis (como imagem de perfil) === */
 .zoomable {
   cursor: pointer;
   transition: transform 0.25s ease;
@@ -18,8 +21,79 @@ body {
   transform: scale(1.2);
 }
 
+/* === Títulos === */
 h1 {
-    text-align: center;
-    font-family: 'Nunito', sans-serif;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Responsividade para celulares específicos */
+
+/* Padrão: Samsung (360px de largura) */
+@media screen and (max-width: 400px) {
+  h1, h2, h3 {
+    font-size: 1.5rem;
   }
-  
+
+  .p-6 {
+    padding: 1rem;
+  }
+
+  .text-lg {
+    font-size: 1rem;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+
+  iframe {
+    height: 300px !important;
+  }
+
+  .bottom-nav {
+    padding: 0.5rem 0;
+  }
+
+  input, textarea, button {
+    font-size: 0.9rem;
+  }
+}
+
+/* Padrão: Motorola (390px - 410px) */
+@media screen and (min-width: 390px) and (max-width: 430px) {
+  h1, h2, h3 {
+    font-size: 1.6rem;
+  }
+
+  iframe {
+    height: 350px !important;
+  }
+
+  .text-lg {
+    font-size: 1.05rem;
+  }
+
+  .text-2xl {
+    font-size: 1.3rem;
+  }
+}
+
+/* Padrão: iPhone 13 Pro Max e afins (430px) */
+@media screen and (min-width: 431px) and (max-width: 500px) {
+  h1, h2, h3 {
+    font-size: 1.7rem;
+  }
+
+  iframe {
+    height: 400px !important;
+  }
+
+  .text-lg {
+    font-size: 1.1rem;
+  }
+
+  .text-2xl {
+    font-size: 1.4rem;
+  }
+}
